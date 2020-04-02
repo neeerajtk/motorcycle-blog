@@ -26,7 +26,13 @@ app.get("/",function(req, res){
     res.redirect("/blogs");
 });
 app.get("/blogs", function(req, res){
-    res.render("index");
+    Blog.find({}, function(err, blogs){
+        if(err){
+            console.log("ERROR ! ");
+        } else {
+            res.render("index", {blogs: blogs});
+        }
+    });
 });
 
 
